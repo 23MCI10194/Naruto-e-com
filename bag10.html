@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sj store</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<div class="header">
+    <div class="container">
+        <div class="navbar">                
+            <div class="logo">
+                <img src="images/logo.png.png" height="150px" >
+            </div>
+            <nav>
+                <ul>
+                    <li><a href=>Home</a></li>
+                    <li><a href=>Products</a></li>
+                    <li><a href=>Contact</a></li>
+                    <li><a href=>About</a></li>
+                    <li><a href=>Account</a></li>
+                </ul>
+            </nav>
+            <a href="cart.html">v
+            <img src="images/bag.webp" width="15px">
+        </div>
+    </div>
+</div>
+<!--------------single product details--------->
+<div class="small-container singleproduct">
+    <div class="row">
+        <div class="spcol-2">
+            <img src="images/06.jpg" height="300%">
+        </div>
+        <div class="spcol-2">
+            <p>Home/products</p>
+            <h1>Naruto-Black-Bag</h1>
+            <div class="singlerating">
+                <p>Rating</p>
+                <i class="fa fa-star checked"></i>
+                <i class="fa fa-star checked"></i>
+                <i class="fa fa-star checked"></i>
+                <i class="fa fa-star checked"></i>
+                <i class="fa fa-star "></i>
+                <p>5.0</p>
+                </div>
+            <h4>$49.00</h4>
+            <input type="number" value="1">
+            <button  class="btn" id="addToCartBtn" >Add to cart</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!---------footer------------>
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+                <h3>Download our App</h3>
+                <p>Download our App in android and ios mobile phone </p>
+                <div class="app-logo">
+                    <a href=https://play.google.com/store/apps?gl=us><img src="images/gpas.png" height="35px"></a>
+                </div>
+            </div>
+            <div class="footer-col-2">
+                <img src="images/rohit logo.png" height="150px">
+                <p>our purpose is to sustinability make the pleasure and benfits of the animi character product hunt </p>
+            </div>
+            <div class="footer-col-4">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/profile.php?id=61557817275209">Facebook</a></li>
+                    <li><a href="https://www.youtube.com/@sasijustinsj6016">Youtube</a></li>
+                    <li><a href="https://t.me/+hyncLynTQD01NmE1">Telegram</a></li>
+                    <li><a href="https://www.instagram.com/sasirohit666/#">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+</section>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+       
+        var addToCartBtn = document.getElementById("addToCartBtn");
+        var quantityInput = document.querySelector(".singleproduct input[type='number']");
+    
+       
+        addToCartBtn.addEventListener("click", function(event) {
+            event.preventDefault(); 
+    
+            
+            var quantity = parseInt(quantityInput.value);
+    
+            
+            var productName = document.querySelector(".singleproduct h1").innerText;
+            var productPrice = document.querySelector(".singleproduct h4").innerText;
+            productPrice=productPrice.split("$")[1];
+            console.log(productName)
+            
+            addToCart(productName, productPrice, quantity);
+        });
+    
+        
+        function addToCart(name, price, quantity) {
+            
+            var cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            
+            
+            var existingItem = cartItems.find(function(item) {
+                return item.name === name;
+            });
+            
+            if (existingItem) {
+               
+                existingItem.quantity += quantity;
+            } else {
+                
+                var newItem = {
+                    imageSrc: "images/06.jpg",
+                    name: name,
+                    price: price,
+                    quantity: quantity
+                };
+                
+                
+                cartItems.push(newItem);
+            }
+            
+            // Store the updated cart items back in local storage
+            localStorage.setItem("cart", JSON.stringify(cartItems));
+            
+           
+        }
+    });
+</script>
+</body>
+</html>
